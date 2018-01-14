@@ -8,3 +8,5 @@ This repository provides and concludes all information and documents regarding m
 
 + Documentation in [docs](/docs)
 + Code in [code](/code)
+
+![Report Wordcloud](gfx/wordcloud.png "Wordcloud Android")
