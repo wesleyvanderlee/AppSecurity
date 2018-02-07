@@ -54,12 +54,12 @@ Make sure you can create a valid input alphabet. The .txt files in the /alphabet
 Vulnerability detection first needs to enrich the inferred model. Some enrichment activities are straightforward, such as collecting the presented text per state. Some enrichment activities are rather complex, such as collecting network requests per transition. Start easy (by enabling one vulnerability detection algorithm at the time) and slowly enable more complex detection algorithms.
 
 ## Repo directory explained
-`alphabet` ⇒ folder to store the alphabets
-`apk` ⇒ folder to store the Android applications (SUT)
-`graphs` ⇒ contains learned graphs, original graphs and shortened graphs (for a better view)
-`hyp` ⇒ stores intermediate hypothesis machines. This is useful to observe hypothesis refinement.
-`scripts` ⇒ contains helping scripts
-`src` ⇒ contains the project source code
+`alphabet` ⇒ folder to store the alphabets  
+`apk` ⇒ folder to store the Android applications (SUT)  
+`graphs` ⇒ contains learned graphs, original graphs and shortened graphs (for a better view)  
+`hyp` ⇒ stores intermediate hypothesis machines. This is useful to observe hypothesis refinement  
+`scripts` ⇒ contains helping scripts  
+`src` ⇒ contains the project source code  
 
 ## Helpful system commands
 
