@@ -1,0 +1,8 @@
+#!/bin/bash
+go build -o ./scripts/minsepseqs ./scripts
+#./scripts/minsepseqs -strategy 0
+./scripts/minsepseqs -path $1 -strategy 0
+rm ./scripts/minsepseqs
+
+
+

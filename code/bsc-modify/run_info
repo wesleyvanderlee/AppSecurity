@@ -1,0 +1,49 @@
+
+
+
+9292 Example
+
+
+mvn exec:java -Dexec.mainClass="com.bunq.main.Main" -Dexec.args="alphabet:create"
+mvn exec:java -Dexec.mainClass="com.bunq.main.Main" -Dexec.args="learn"
+
+! Make Sure on valid Wifi !
+
+#Create Alphabet
+-Enter Name Alphabet: nt (no numbers and special chars)
+   --> If this hangs, make sure device can be reached through adb shell
+
+#Learn
+-Make sure Appium has started
+
+
+
+
+############
+Find application package:
+$ adb shell 'pm list packages -f' | grep duck
+> package:/data/app/com.duckduckgo.mobile.android-1/base.apk=com.duckduckgo.mobile.android
+$ adb pull /data/app/com.duckduckgo.mobile.android-1/base.apk
+> 1017 KB/s (5310837 bytes in 5.099s)
+$ mv base.apk duckduckgo.apk
+$ aapt dump badging duckduckgo.apk  | grep launchable-activity
+> launchable-activity: name='com.duckduckgo.mobile.android.activity.DuckDuckGo'  label='DuckDuckGo' icon=''
+
+
+
+deviceName=Samsung Galaxy S4
+platformVersion=5.0.1
+appPackage=nl.negentwee
+appActivity=nl.negentwee.activities.StartupActivity
+
+
+
+-----------
+
+#NOS:
+package:/data/app/com.eoffice.android-1/base.apk=com.eoffice.android
+launchable-activity: name='nl.nos.teletekst.activities.Main'  label='' icon=''
+
+nl.nos.teletekst.activities.Main
+appPackage=com.eoffice.android
+

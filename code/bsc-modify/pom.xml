@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.bunq.learnlib</groupId>
+	<artifactId>fsm-learner</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<!-- Version of LearnLib to use -->
+		<learnlib.version>0.12.0</learnlib.version>
+        <!-- Must be listed in the dependencies section otherwise it will be null. -->
+        <my.lib>${org.jmockit:jmockit:jar}</my.lib>
+	</properties>
+	
+	<reporting>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>2.15</version>
+          <reportSets>
+            <reportSet>
+              <reports>
+                <report>checkstyle</report>
+              </reports>
+            </reportSet>
+          </reportSets>
+        </plugin>
+        
+        <plugin>
+        	<groupId>com.atlassian.maven.plugins</groupId>
+        	<artifactId>maven-clover2-plugin</artifactId>
+        </plugin>
+      </plugins>
+  </reporting>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>de.learnlib</groupId>
+				<artifactId>learnlib-parent</artifactId>
+				<version>${learnlib.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.learnlib</groupId>
+			<artifactId>learnlib-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.learnlib</groupId>
+			<artifactId>learnlib-counterexamples</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.learnlib</groupId>
+			<artifactId>learnlib-basic-eqtests</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.learnlib</groupId>
+			<artifactId>learnlib-simulator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.learnlib</groupId>
+			<artifactId>learnlib-cache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.learnlib</groupId>
+			<artifactId>learnlib-lstar-generic</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>de.learnlib</groupId>
+            <artifactId>learnlib-lstar-baseline</artifactId>
+        </dependency>
+		<dependency>
+              <groupId>de.learnlib</groupId>
+              <artifactId>learnlib-dhc</artifactId>
+         </dependency>
+         <dependency>
+              <groupId>de.learnlib</groupId>
+              <artifactId>learnlib-ttt</artifactId>
+         </dependency>
+          <dependency>
+              <groupId>de.learnlib</groupId>
+              <artifactId>learnlib-kearns-vazirani</artifactId>
+         </dependency>
+         
+
+         
+		<dependency>
+			<groupId>net.automatalib</groupId>
+			<artifactId>automata-commons-dotutil</artifactId>
+		</dependency>
+		
+		<dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>3.4.0</version>
+    </dependency>
+        
+	<!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+	<dependency>
+	    <groupId>io.appium</groupId>
+	    <artifactId>java-client</artifactId>
+	    <version>5.0.0-BETA8</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.graphstream</groupId>
+	    <artifactId>gs-core</artifactId>
+	    <version>1.1.1</version>
+	</dependency>
+    
+    <dependency>
+      <groupId>com.googlecode.json-simple</groupId>
+      <artifactId>json-simple</artifactId>
+      <version>1.1</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.2.4</version>
+    </dependency>
+    
+	<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+	<dependency>
+	    <groupId>com.google.guava</groupId>
+	    <artifactId>guava</artifactId>
+	    <version>21.0</version>
+	</dependency>
+		
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+			<scope>test</scope>
+		</dependency>	
+		
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		
+		<dependency>
+	   <groupId>org.powermock</groupId>
+	   <artifactId>powermock-api-easymock</artifactId>
+	   <version>1.6.2</version>
+    </dependency>
+    <dependency>
+	   <groupId>org.easymock</groupId>
+	   <artifactId>easymock</artifactId>
+	   <version>3.3.1</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.jmockit</groupId>
+      <artifactId>jmockit</artifactId>
+      <version>1.11</version>
+    </dependency>
+	</dependencies>
+	
+	<build>
+	  <plugins>
+      <plugin>
+        <groupId>com.atlassian.maven.plugins</groupId>
+        <artifactId>maven-clover2-plugin</artifactId>
+        <configuration>
+          <excludes>
+        		<exclude>**/*Test/java</exclude>
+      		</excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>instrument</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+	
+		  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      
+    <plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-jar-plugin</artifactId>
+       <configuration>
+        <archive>
+          <manifest>
+            <mainClass>com.bunq.Main.main</mainClass>
+          </manifest>
+          </archive>
+       </configuration>
+      </plugin>
+      
+      <plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+    </plugins>
+	</build>
+</project>
+
