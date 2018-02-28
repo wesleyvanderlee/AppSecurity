@@ -14,31 +14,77 @@ State Machine Learning and Vulnerability Detection consist of two parts:
 
 ## System Requirements
 The project depends on a number of programs to be pre-installed or preconfigured. This will be stated here. The following needs to be installed before the project is able to run.
-**Learning DFAs**
-1. Java (of course)
-2. Maven CLI (for program execution
-2. [Appium](http://appium.io/) (but install this with homebrew and not with npm)
-3. ADB, basically make sure you have the most recent version of Android Studio installed. You need to be able to interact with a physical mobile phone, so as a first step, see if adb shell is working and you are able to execute commands on your phone.
 
-**Postprocessing**
+**Learning DFAs**
+1. ADB, basically make sure you have the most recent version of Android Studio (including its SDK) installed. You need to be able to interact with a physical mobile phone or an emulator, so as a first step, see if adb shell is working and you are able to execute commands on your device.
+2. Java (of course)
+3. IDE for Java project (only if you intend to modify the bsc-modify project code)
+4. Maven CLI (for program execution)
+5. [Appium](http://appium.io/) (Install this with homebrew and not with npm. On Windows, simply download the executable)
+
+**Postprocessing -- vulnerability detection**
+
 4. `aapt` needs to be installed. Also, make sure a copy of the apk file is stored in the `/apk` directory.
+
 5. A virtual emulator, which I named `Nexus5X`. Other names might be applicable, but this must be changed in the config.
+
 6. The Android app also needs to be installed on the virtual emulator.
+
 7. The emulator needs to have a PIN security code, equal to `0000`.
+
 8. The emulator needs to have installed a mitmproxy CA certificate (see https://mitmproxy.org/).
 
 **Configurations**
 After the requirements are met, the following settings must be adjusted:
 1. `/src/main/config/androidConfig.properties` ==> Provide device and SUT information.
+    
+    Example: 
+   ```
+    deviceName=Nexus5x
+    platformVersion=8.1.0
+
+    emulatorName=Nexus5x
+    emulatorPlatformVersion=8.1.0
+
+    apkname=insecurebankv2.apk
+    appPackage=com.android.insecurebankv2
+    appActivity=com.android.insecurebankv2.LoginActivity
+    ```
+    
+  Here, deviceName is the physical device or the emulator used to test the apk; emulatorName is the name of the AVD used as the learner; apkname is the name of the apk to test; appPackage is the package name of the apk; appActivity is the main launchable activity. In order to find the apk activity related information, use aapt (see Helpful system commands)
+    
 2. `/src/main/config/config.properties` ==> Specify learning algorithm and equivalence oracle.
-3. Check if the hardcoded adb commands in `Main.runAlphabetScript()` work. This method collects UI elements from the physical device UI, but 'pulling' the screenshots differs per installation of Android Studio.
+    
+    Example:
+    ``` 
+        learningAlgorithm=lstar
+
+        EquivMethod=RandomWalk
+
+        alphabetFile=insec
+    ```
+        
+  alphabetFile is the file inside `~/alphabet/` where the alphabets were stored after running the Create alphabet section commands. (refers to `/alphabet_file_name/` see later)
+    
+3. [optional] Check if the hardcoded adb commands in `Main.runAlphabetScript()` work. This method collects UI elements from the physical device UI, but 'pulling' the screenshots differs per installation of Android Studio. 
+
+Specifically, `adb shell uiautomator dump` dumps an screenshot of the activity in an xml file and `adb pull /sdcard/window_dump.xml alphabet/window_dumps/alphabet_file_name/file_name.xml` 'pulls' that xml file from the emulator's sdcard or local storage to `~/alphabet/window_dumps/alphabet_file_name/file_name.xml`. (In case you do not see the alphabet file (.txt) created, make sure the OS is allowed to make `/windows_dump/` and `/alphabet_file_name/ ` folders)
 
 ## Program execution
 The program can be initiated with the following two commands:
 #### Create alphabet
 1. Start adb server (make sure device is connected)
-2. `mvn exec:java -Dexec.mainClass="com.bunq.main.Main" -Dexec.args="alphabet:create"`
-3. Follow instructions by the program.
+2. Go to the root directory of the project (same level where pom.xml is placed)
+3. Execute `mvn exec:java -Dexec.mainClass="com.bunq.main.Main" -Dexec.args="alphabet:create"` on command line. (Do not get deceived by the bunq package name, it is the package name where Main.java is located)
+3. Follow instructions by the program. 
+
+    a) Enter an alphabet name (see above: `/alphabet_file_name/`), 
+    
+    b) then open the activity on the device of which you want to build the state machine, 
+    
+    c) enter the name of the activity (see above: `file_name.xml`). 
+    
+    You can follow b) and c) multiple times for several activities. Type `stop` once done and hit enter.
 
 #### Learning DFA
 1. Start appium server with `appium`. For easy debugging and confirmation that it works, do not start appium as a background process.
