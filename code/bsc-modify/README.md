@@ -88,7 +88,10 @@ The program can be initiated with the following two commands:
 
 #### Learning DFA
 1. Start appium server with `appium`. For easy debugging and confirmation that it works, do not start appium as a background process.
-2. launch project: `mvn exec:java -Dexec.mainClass="com.bunq.main.Main" -Dexec.args="learn"`
+2. Launch project: `mvn exec:java -Dexec.mainClass="com.bunq.main.Main" -Dexec.args="learn"`
+3. You will see the app automatically starting up on your device and perform several actions. It is `appium` being the virtual and automatic entity performing actions on the app.
+4. Once the learning is done, a dot file will be created in the project root directory `~/graphs/` folder. Again, if you are on Windows, make sure you create this folder in advance, or give the project permissions to create folders if they don't exist.
+5. You can view the graph using the command `dot -Tps [dot file] -o [output file name].ps` on Linux, or any alternatives for other OSes.
 
 #### Vulnerability detection
 1. Emulator will start, unlock itself (`emulator -avd Nexus5X -http-proxy 127.0.0.1:8889`)
